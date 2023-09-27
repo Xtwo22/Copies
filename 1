@@ -1,0 +1,18 @@
+Sub RenameFilesInFolder()
+    Dim FolderPath As String
+    Dim FileName As String
+    Dim NewFileName As String
+    
+    ' Set the folder path
+    FolderPath = "C:\path\to\your\folder\"
+    
+    ' Loop through files in the folder
+    FileName = Dir(FolderPath & "*")
+    Do While FileName <> ""
+        If InStr(1, FileName, ".") = 0 Then ' Check if there's no extension
+            NewFileName = Replace(FileName, "pap", "pap15")
+            Name FolderPath & FileName As FolderPath & NewFileName
+        End If
+        FileName = Dir
+    Loop
+End Sub
