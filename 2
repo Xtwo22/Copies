@@ -1,0 +1,28 @@
+Sub ReplaceTextInFiles()
+    Dim FolderPath As String
+    Dim FileName As String
+    Dim FileContent As String
+    Dim NewContent As String
+    
+    ' Set the folder path
+    FolderPath = "C:\path\to\your\folder\"
+    
+    ' Loop through files in the folder
+    FileName = Dir(FolderPath & "*.txt") ' Change "*.txt" to match the file type you want to process
+    Do While FileName <> ""
+        ' Read the file content
+        Open FolderPath & FileName For Input As #1
+        FileContent = Input$(LOF(1), #1)
+        Close #1
+        
+        ' Replace 'pap' with 'pap15' in the content
+        NewContent = Replace(FileContent, "pap", "pap15")
+        
+        ' Write the modified content back to the file
+        Open FolderPath & FileName For Output As #1
+        Print #1, NewContent
+        Close #1
+        
+        FileName = Dir
+    Loop
+End Sub
